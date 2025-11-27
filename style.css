@@ -13,13 +13,13 @@ body{
     box-sizing: border-box;
 }
     h1{
-        font-size: 20px;
+        font-size: 24px;
         margin-bottom: 12px;
         align-self: center;
     }
     label{
         display:block;
-        font-size:15px;
+        font-size:18px;
         margin-bottom:6px;
         align-self: center;
     }
@@ -29,9 +29,9 @@ body{
         outline: none;
         border-radius: 10px;
         flex:1; 
-        padding:10px; 
+        padding:12px; 
         border-radius:8px; 
-        font-weight:600;
+        font-weight:720;
     }
     button:disabled { 
         opacity:0.5; 
@@ -39,7 +39,7 @@ body{
     }
     input{
         width:100%;
-        padding:10px; 
+        padding:12px; 
         border-radius:8px; 
         border:1px solid #e0e6ef; 
         margin-bottom:12px; 
@@ -47,13 +47,13 @@ body{
     }
     .vote {
         border-radius:12px; 
-        box-shadow:0 6px 18px rgba(14, 23, 48, 0.08); 
-        width: min(360px, 100%); /* fluid width up to 360px */
+        box-shadow:0 7.2px 21.6px rgba(14, 23, 48, 0.08); 
+        width: min(432px, 100%); /* fluid width up to 432px */
         display: flex;
         justify-content:center;
         flex-direction: column;
         background:white; 
-        padding:20px; 
+        padding:22px; 
         box-sizing: border-box;
     }
     .buttons{
