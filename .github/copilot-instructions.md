@@ -3,10 +3,12 @@
 Purpose
 - Small single-page voting app that records user votes (pseudo + choice) to Firebase Realtime Database.
 - Minimal setup (no build step): authors use direct imports of Firebase SDK via CDN and standard DOM APIs.
+- The vote will be sent to Unity users in a VR project in real time.
 
 Big picture / architecture
 - Frontend-only single-page app: `index.html` + `style.css` + `app.js`.
 - No backend or build pipeline in repo; all logic is client-side and uses Firebase Realtime Database as persistence.
+- The site is and will be hosted statically on GitHub Pages.
 - Firebase config is in `app.js` (dev-friendly but not production-safe). The app writes to the `votes` node.
 
 Key files
