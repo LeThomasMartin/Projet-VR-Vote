@@ -83,6 +83,11 @@ async function writeVote(pseudoValue, voteValue) {
     showMessage("⚠️ Entre ton pseudo avant de voter.", "error", 6000);
     return;
   }
+  // Validate pseudo length (max 40 characters)
+  if (pseudo.length > 40) {
+    showMessage("⚠️ Ton pseudo doit contenir 40 caractères maximum.", "error", 6000);
+    return;
+  }
 
   if (!votingEnabled) {
     showMessage("🔒 Les votes sont fermés pour le moment.", "error", 6000);

@@ -20,6 +20,7 @@ Démarrage rapide (développement)
 
 Fichiers et responsabilités
 - `index.html` — balisage UI (attend `#pseudo`, `#btn1`, `#btn2`, `#confirmation`).
+  - Le pseudo (`#pseudo`) est limité à 40 caractères.
 - `app.js` — logique principale. Utilise la SDK Firebase modulaire v9 via CDN ; écrit dans le noeud RTDB `votes` avec `push()`/`set()`.
 - `style.css` — styles UI.
 
