@@ -17,6 +17,26 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
+/* ----------------- Voting control (Unity will toggle this) ----------------- */
+// Whether voting is allowed. Unity (or other host) can set this via `window.setVotingEnabled(true|false)`.
+let votingEnabled = true; // default: true (voting open)
+
+export function getVotingEnabled() { return votingEnabled; }
+export function setVotingEnabled(enabled) {
+  votingEnabled = enabled;
+  updateButtonsState();
+  if (!votingEnabled) {
+    // Keep this persistent until re-enabled
+    showMessage("🔒 Les votes sont fermés pour le moment.", "error", 0);
+  } else {
+    showMessage("✅ Les votes sont ouverts.", "success", 3000);
+  }
+}
+
+// For non-module contexts (Unity WebGL or other embed environments) expose on window
+window.setVotingEnabled = setVotingEnabled;
+window.getVotingEnabled = getVotingEnabled;
+
 /* ----------------- Utilitaires UI ----------------- */
 function getOrCreateConfirmationEl() {
   let el = document.getElementById("confirmation");
@@ -64,9 +84,14 @@ async function writeVote(pseudoValue, voteValue) {
     return;
   }
 
+  if (!votingEnabled) {
+    showMessage("🔒 Les votes sont fermés pour le moment.", "error", 6000);
+    return;
+  }
+
   // Indicateur en cours
   showMessage("Enregistrement en cours…", "info", 0);
-  setButtonsDisabled(true);
+  updateButtonsState();
 
   try {
     const votesRef = ref(db, "votes");
@@ -78,6 +103,7 @@ async function writeVote(pseudoValue, voteValue) {
     });
 
     showMessage("✔️ Vote enregistré avec succès !", "success", 5000);
+    votingEnabled = false; // désactiver le vote après un envoi
     console.log("Écriture réussie, key:", newVoteRef.key);
     // Optionnel : vider le champ pseudo
     // document.getElementById("pseudo").value = "";
@@ -92,7 +118,7 @@ async function writeVote(pseudoValue, voteValue) {
       showMessage("❌ Erreur lors de l'enregistrement : " + msg, "error", 10000);
     }
   } finally {
-    setButtonsDisabled(false);
+    updateButtonsState();
   }
 }
 
@@ -116,6 +142,8 @@ document.addEventListener("DOMContentLoaded", () => {
   btn2.addEventListener("click", () => {
     writeVote(pseudoInput.value, "Choix 2");
   });
+  // Reflect voting state (enable/disable buttons) on initial load
+  updateButtonsState();
 });
 
 /* ----------------- (Optionnel) fonction pour afficher les votes dans la console ----------------- */
@@ -128,4 +156,9 @@ export async function showVotesInConsole() {
     console.error(e);
     showMessage("Erreur lecture votes : " + (e?.message || e), "error", 8000);
   }
+}
+
+function updateButtonsState() {
+  const disabled = !votingEnabled;
+  setButtonsDisabled(disabled);
 }

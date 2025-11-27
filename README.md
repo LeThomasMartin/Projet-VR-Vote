@@ -39,3 +39,9 @@ Tests & débogage
 Contribution & PRs
 - Gardez les modifications petites et ciblées — les petites PRs sont plus faciles à relire.
 - Conventions : JS vanilla pour le DOM et import direct du SDK via CDN (pas de pipeline de build par défaut).
+
+Interop Unity (contrôle des votes)
+- L'état d'ouverture des votes peut être contrôlé depuis un script Unity (WebGL) via une API JS exposée globalement :
+  - `window.setVotingEnabled(true|false)` — active/désactive la possibilité de voter.
+  - `window.getVotingEnabled()` — obtient l'état actuel (true = ouvert, false = fermé).
+  - Exemple : depuis Unity WebGL, appelez `Application.ExternalEval("window.setVotingEnabled(false);");` ou utilisez l'interop adaptée à votre build.
