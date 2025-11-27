@@ -1,37 +1,44 @@
+/* root-scale variable to scale the whole UI. Change the value to increase/decrease UI size. */
+:root {
+    --scale: 1.2; /* 1.2 = +20% */
+}
+
 /* only style confirmation paragraph to avoid globally styling 'p' elements */
 #confirmation{
     color: green;
     font-weight: 700;
-    margin-top: 10px;
+    margin-top: calc(10px * var(--scale));
+    font-size: calc(14px * var(--scale));
 }
 body{
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh; /* full viewport height */
-    padding: 20px; /* small padding for mobile */
+    padding: calc(20px * var(--scale)); /* small padding for mobile */
     box-sizing: border-box;
 }
     h1{
-        font-size: 24px;
-        margin-bottom: 12px;
+        font-size: calc(20px * var(--scale));
+        margin-bottom: calc(12px * var(--scale));
         align-self: center;
     }
     label{
         display:block;
-        font-size:18px;
-        margin-bottom:6px;
+        font-size: calc(15px * var(--scale));
+        margin-bottom:calc(6px * var(--scale));
         align-self: center;
     }
     button {
         cursor: pointer;
         border: none;
         outline: none;
-        border-radius: 10px;
+        /* rounded corners */
         flex:1; 
-        padding:12px; 
-        border-radius:8px; 
+        padding: calc(10px * var(--scale)); 
+        border-radius: calc(8px * var(--scale)); 
         font-weight:720;
+        font-size: calc(14px * var(--scale));
     }
     button:disabled { 
         opacity:0.5; 
@@ -39,27 +46,27 @@ body{
     }
     input{
         width:100%;
-        padding:12px; 
-        border-radius:8px; 
+        padding: calc(10px * var(--scale)); 
+        border-radius: calc(8px * var(--scale)); 
         border:1px solid #e0e6ef; 
-        margin-bottom:12px; 
+        margin-bottom:calc(12px * var(--scale)); 
         align-self: center;
     }
     .vote {
-        border-radius:12px; 
-        box-shadow:0 7.2px 21.6px rgba(14, 23, 48, 0.08); 
-        width: min(432px, 100%); /* fluid width up to 432px */
+        border-radius: calc(12px * var(--scale)); 
+        box-shadow:0 calc(6px * var(--scale)) calc(18px * var(--scale)) rgba(14, 23, 48, 0.08); 
+        width: min(calc(360px * var(--scale)), 100%); /* fluid width up to scaled 360px */
         display: flex;
         justify-content:center;
         flex-direction: column;
         background:white; 
-        padding:22px; 
+        padding: calc(20px * var(--scale)); 
         box-sizing: border-box;
     }
     .buttons{
         display:flex; 
-        gap:10px; 
-        margin-bottom:12px; 
+        gap: calc(10px * var(--scale)); 
+        margin-bottom:calc(12px * var(--scale)); 
     }
   .btn1{
      background:#10b981; 
@@ -73,19 +80,19 @@ body{
 /* Responsive rules: stack buttons and increase tap targets on small screens */
 @media (max-width: 480px) {
     .vote {
-        padding: 16px;
+        padding: calc(16px * var(--scale));
     }
     .buttons{
         flex-direction: column;
-        gap:8px;
+        gap: calc(8px * var(--scale));
     }
     button {
         width: 100%;
-        padding: 12px;
-        font-size: 16px;
+        padding: calc(12px * var(--scale));
+        font-size: calc(16px * var(--scale));
     }
     input{
         width: 100%;
     }
-    h1{ font-size:18px; }
+    h1{ font-size: calc(18px * var(--scale)); }
 }

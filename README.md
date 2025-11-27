@@ -23,6 +23,9 @@ Fichiers et responsabilités
 - `app.js` — logique principale. Utilise la SDK Firebase modulaire v9 via CDN ; écrit dans le noeud RTDB `votes` avec `push()`/`set()`.
 - `style.css` — styles UI.
 
+Ajuster l'échelle UI
+- Pour augmenter/diminuer globalement la taille de l'interface, modifiez la variable `--scale` dans `style.css` (valeur par défaut : 1.2 pour +20%).
+
 Détails Firebase
 - L'application contient une configuration Firebase directement dans `app.js` pour faciliter le développement.
   - Noeud de données : `votes`
