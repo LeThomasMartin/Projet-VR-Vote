@@ -1,6 +1,6 @@
 // app.js - boutons désactivés pendant l'envoi, messages d'info/erreur visibles
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
-import { getDatabase, ref, push, set, get } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
+import { getDatabase, ref, push, set, get, onValue  } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
 
 /* ----------------- Config Firebase (copie depuis ta console) ----------------- */
 const firebaseConfig = {
