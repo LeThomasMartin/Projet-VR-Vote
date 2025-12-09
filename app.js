@@ -125,17 +125,24 @@ async function writeVote(pseudoValue, voteValue) {
     updateButtonsState();
   }
 }
-/* ----------------- Réceptions données ----------------- */
+/* ----------------- Réceptions données buttons----------------- */
 const dbRefButtons = ref(db, "buttons");
 
 onValue(dbRefButtons, (snapshot) => {
   const data = snapshot.val();
-
+  
   // exemple : mise à jour d'un texte HTML
   document.getElementById("btn1").innerText = data.choix1;
   document.getElementById("btn2").innerText = data.choix2;
 });
 
+const dbRefCanVote = ref(db, "CanVote");
+
+onValue(dbRefCanVote, (snapshot) => {
+  const data = snapshot.val();
+  votingEnabled = data;
+  updateButtonsState();
+});
 /* ----------------- Attachement des événements ----------------- */
 document.addEventListener("DOMContentLoaded", () => {
   const btn1 = document.getElementById("btn1");
