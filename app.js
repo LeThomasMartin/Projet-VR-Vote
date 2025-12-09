@@ -103,8 +103,7 @@ async function writeVote(pseudoValue, voteValue) {
     const newVoteRef = push(votesRef);
     await set(newVoteRef, {
       pseudo,
-      vote: voteValue,
-      createdAt: Date.now()
+      vote: voteValue
     });
 
     showMessage("✔️ Vote enregistré avec succès !", "success", 5000);
@@ -126,6 +125,16 @@ async function writeVote(pseudoValue, voteValue) {
     updateButtonsState();
   }
 }
+/* ----------------- Réceptions données ----------------- */
+const dbRefButtons = ref(db, "buttons");
+
+onValue(dbRefButtons, (snapshot) => {
+  const data = snapshot.val();
+
+  // exemple : mise à jour d'un texte HTML
+  document.getElementById("btn1").innerText = data.choix1;
+  document.getElementById("btn2").innerText = data.choix2;
+});
 
 /* ----------------- Attachement des événements ----------------- */
 document.addEventListener("DOMContentLoaded", () => {
