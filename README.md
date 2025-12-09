@@ -1,7 +1,9 @@
 # Projet-VR-Vote
-# Fait par AI
+# README édité par AI
 
-Petite application de vote single-page destinée au projet 2025 du club de jeux vidéo de l'université Laval — une application frontend minimale qui enregistre les votes dans Firebase Realtime Database.
+Petite application de vote single-page destinée au projet 2025 du club de jeux vidéo de l'université Laval — une application frontend minimale qui enregistre les votes dans Firebase Realtime Database. L'application recoit également des données depuis unity.
+
+Lien du site: [https://lethomasmartin.github.io/Projet-VR-Vote/](https://lethomasmartin.github.io/Projet-VR-Vote/)
 
 Démarrage rapide (développement)
 
@@ -20,7 +22,7 @@ Démarrage rapide (développement)
 
 Fichiers et responsabilités
 - `index.html` — balisage UI (attend `#pseudo`, `#btn1`, `#btn2`, `#confirmation`).
-  - Le pseudo (`#pseudo`) est limité à 40 caractères.
+  - Le pseudo (`#pseudo`) est limité à 30 caractères.
 - `app.js` — logique principale. Utilise la SDK Firebase modulaire v9 via CDN ; écrit dans le noeud RTDB `votes` avec `push()`/`set()`.
 - `style.css` — styles UI.
 
@@ -30,7 +32,7 @@ Ajuster l'échelle UI
 Détails Firebase
 - L'application contient une configuration Firebase directement dans `app.js` pour faciliter le développement.
   - Noeud de données : `votes`
-  - Format d'un enregistrement : `{ pseudo, vote, createdAt }`
+  - Format d'un enregistrement : `{ pseudo, vote }`
 - Sécurité : n'incluez pas de clés de production dans `app.js`. En production, utilisez un serveur, des variables d'environnement et des règles sécurisées.
 - Si les écritures échouent avec `permission_denied`, vérifiez les règles de la base de données dans la console Firebase : `Realtime Database > Rules`.
 
